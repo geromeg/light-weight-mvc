@@ -14,6 +14,14 @@ o For object
 m For map / multi dimensional array
 d For database object
 r For database result
+e For erroneous types when a variable can be multiple types
+b For boolean types
+
+In OOP methodology
+
+a For Abstract
+o For Object
+i For Interface
 
 #############################
 # Loops and constructs      #
