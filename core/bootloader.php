@@ -8,4 +8,7 @@
 require_once('core/config.php');
 require_once('core/routes.php');
 require_once('core/router.php');
+require_once('core/core.php');
+require_once('core/acontroller.php');
+require_once('core/amodel.php');
 ?>
