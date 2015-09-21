@@ -12,5 +12,5 @@
 # Default Route #
 #################
 
-$aRoutes['/'] = 'home/welcome/index';
+$aRoutes['/'] = 'users/view';
 ?>

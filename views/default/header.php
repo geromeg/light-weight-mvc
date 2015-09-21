@@ -8,3 +8,4 @@
 ?>
 
 <h1>Default Header View</h1>
+<span>Edit this file in views/default/header.php</span>

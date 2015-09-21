@@ -11,3 +11,4 @@
 <div>
     <?php echo $sBody; ?>
 </div>
+<span>Edit this file in views/default/body.php</span>

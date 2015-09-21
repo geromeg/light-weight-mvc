@@ -8,3 +8,4 @@
 ?>
 
 <h1>Default footer View</h1>
+<span>Edit this file in views/default/footer.php</span>

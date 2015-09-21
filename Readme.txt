@@ -12,16 +12,17 @@ d For double
 f For float
 o For object
 m For map / multi dimensional array
-d For database object
+do For database object
 r For database result
 e For erroneous types when a variable can be multiple types
 b For boolean types
+co For framework core object
 
 In OOP methodology
 
-a For Abstract
+A For Abstract
 o For Object
-i For Interface
+I For Interface
 
 #############################
 # Loops and constructs      #

@@ -4,8 +4,12 @@
  * @date 26 August 2015
  * @description Handles all core routing
  */
+if(!isset($_GET['route'])) {
+    $sRoute = "/";
+} else {
+    $sRoute = $_GET['route'];
+}
 
-$sRoute = $_GET['route'];
 if(!isset($_GET['ajax'])) {
     require_once($aConfig['default_header_view']);
 }
@@ -21,8 +25,8 @@ if(is_array($aRoutes)) {
 }
 
 require_once("controllers".$sFolder."/".$sFile.".php");
-$oController = new Controller();
-$oController->{$sFunction}();
+$coController = new Controller();
+$coController->{$sFunction}();
 
 if(!isset($_GET['ajax'])) {
     require_once($aConfig['default_footer_view']);

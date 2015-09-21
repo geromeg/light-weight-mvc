@@ -5,6 +5,9 @@
  * @description Configuration for framework
  */
 
+ini_set("display_errors",1);
+error_reporting(E_ALL ^ E_WARNING ^ E_NOTICE);
+
 ####################
 # Defines          #
 ####################
@@ -31,10 +34,15 @@ $aConfig['default_timezone'] = "Africa/Johannesburg"; //Default timezone
 
 $aConfig['logging_mode'] = LOG_VERBOSE; //By default log everything possible
 
+$aConfig['default_datetime'] = "Y-m-d H:i:s";
+
 
 #####################################
 # Log files                         #
-#####################################
+#######################################
+# DO NOT CHANGE VARIABLES, JUST VALUES#
+# #####################################
+
 $aConfig['logs'][LOG_ERROR] = "logs/error.log";
 $aConfig['logs'][LOG_WARNING] = "logs/warning.log";
 $aConfig['logs'][LOG_CRITICAL] = "logs/critical.log";
@@ -45,9 +53,9 @@ $aConfig['logs']['post_pre_condition_log'] = "logs/post_pre_condition.log";
 #####################################
 # Default Views                     #
 #####################################
-$aConfig['default_header_view'] = "default/header.php";
-$aConfig['default_body_view']   = "default/body.php";
-$aConfig['default_footer_view'] = "default/footer.php";
+$aConfig['default_header_view'] = "views/default/header.php";
+$aConfig['default_body_view']   = "views/default/body.php";
+$aConfig['default_footer_view'] = "views/default/footer.php";
 
 ####################################
 # URL Switching Mechanism          #

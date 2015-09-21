@@ -13,11 +13,12 @@ class ACore {
      * @param $sType
      */
     protected function evalcondition($eCondition,$sType) {
-        $bResult = eval($eCondition);
+        $bResult = $eCondition;
+
         if(!$bResult) {
             switch($aConfig['prepost_condition_mode']) {
                 case FULL_FAILURE:
-                    throws new Exception("{$eCondition} did not evaluate to what was expected on the {$sType}")
+                    throw new Exception("{$eCondition} did not evaluate to what was expected on the {$sType}");
                     break;
                 case LOG_STATE:
                     $sMessage = "{$eCondition} did not evaluate to what was expected on the {$sType}";
@@ -33,14 +34,18 @@ class ACore {
      * @param $eCondition A condition in String format of the condition to be met Eg: "$iCount>0"
      */
     protected function postcondition($eCondition) {
-       $this->evalcondition($eCondition,"Post Condition");
+        try {
+            $this->evalcondition($eCondition,"Post Condition");
+        } catch(Exeption $e) {}
     }
 
     /**
      * @param $eCondition A condition in String format of the condition to be met Eg: "$iCount>0"
      */
     protected function precondition($eCondition) {
-        $this->evalcondition($eCondition,"Pre Condition");
+        try {
+            $this->evalcondition($eCondition,"Pre Condition");
+        } catch(Exception $e) {}
     }
 
     /**
@@ -50,7 +55,7 @@ class ACore {
      * @return bool
      */
     protected function expecting($eValue, $sType) { //When you are expecting a certain variable type and you would like to validate it
-        $eNewvalue = ({$sType})$eValue;
+        $eNewvalue = settype($eValue,$sType);
 
         if($eNewvalue != $eValue) {
             return false;
@@ -81,8 +86,10 @@ class ACore {
 
         foreach (func_get_args() as $sModel) {
             $aPath = $this->getCorePaths($sModel);
-            require_once('models/' . $aPath['file'] . ".php" );
-            $this->{$aPath['file']} = new {$aPath['file']."_Model"}();
+            $sFilename = $aPath['function'];
+            $sClassname = ucwords($sFilename)."_Model";
+            require_once('models/' . $sFilename . ".php" );
+            $this->{$sFilename} = new $sClassname;
         }
     }
 
@@ -102,10 +109,10 @@ class ACore {
      * @return string The view with the populated data returned for printing
      */
     protected function loadView($sViewname = "",$aData) {
-        $aPath = $this->getCorePaths($sViewname);
+               
         ob_start();
         extract($aData);
-        require_once('views/' . $aPath['file'] . ".php" );
+        require_once('views/' . $sViewname . ".php" );
         $cBody = ob_get_contents();
         ob_end_clean();
         return $cBody;
