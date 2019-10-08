@@ -4,10 +4,18 @@
  * @date 26 August 2015
  * @description Handles all core routing
  */
-if(!isset($_GET['route'])) {
-    $sRoute = "/";
-} else {
-    $sRoute = $_GET['route'];
+
+$session = new session();
+$id = $session->get_var('id');
+
+$sRoute = "/";
+if(!empty($id) || $id > 0){
+	if(isset($_GET)) {
+		$cRoute = trim(array_keys($_GET)[0]);
+		if(!empty($cRoute) || $cRoute > ''){
+			$sRoute = $cRoute;
+		}
+	}
 }
 
 if(!isset($_GET['ajax'])) {
